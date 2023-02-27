@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="<%= htmlWebpackPlugin.options.lang %>">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+	<meta name="DC.Identifier" content="<%= htmlWebpackPlugin.options.DOI %>" />
+	<meta name="description" content="<%= htmlWebpackPlugin.options.description %>"/>
+
+	<link rel="shortcut icon" href="../img/favicon.ico">
+	<title><%= htmlWebpackPlugin.options.title %></title>
+	<%
+	var location = htmlWebpackPlugin.options.filename.split('/').pop();
+	for(var x=0; x < totLang.length; x++) {
+	%>
+	<% if(totLang[x].lang === htmlWebpackPlugin.options.lang) { %>
+	<link rel="canonical" href="https://www.fao.org/3/<%= totLang[x].code %>/online/<%= acronym %>-<%= year %>/<%= location %>">
+	<% } else { %>
+	<link rel="alternate" hreflang="<%= totLang[x].lang %>" href="https://www.fao.org/3/<%= totLang[x].code %>/online/<%= acronym %>-<%= year %>/<%= location %>">
+	<% } %>
+	<% } %>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127786997_9">
+	</script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-127786997-9');
+	</script>
+</head>
+<body class="<%= structure %>" >
+<div>
+	<div class="head-wrap">
+		<header>
+			<div class="header">
+				<div class="logos">
+					<a href="http://www.fao.org" target="_blank" title="FAO - Food and Agriculture Organization"><img class="main-logo" src="../img/logo.svg" alt="FAO"></a>
+				</div>
+				<div class="language">
+					<ul>
+						<% for(var x=0; x < totLang.length; x++) {%>
+						<% if(totLang[x].lang !== htmlWebpackPlugin.options.lang) { %>
+						<li>
+							<a href="http://www.fao.org/3/<%= totLang[x].code %>/online/<%= totLang[x].code %>.html" title="<%= totLang[x].code %>">
+								<%= totLang[x].text %>
+							</a>
+						</li>
+						<% } else { %>
+						<li class="active">
+							<%= totLang[x].text %>
+							<img src="../img/caret-down.svg" alt="language">
+						</li>
+						<% } %>
+						<% } %>
+					</ul>
+				</div>
+				<div id="menu-toggle">
+					<label for="toggle">
+						<input type="checkbox" id="toggle"/>
+						<span></span>
+						<span></span>
+						<span></span>
+					</label>
+				</div>
+			</div>
+		</header>
+	</div>
+</div>
+<% if(prevLink && prevLink.url) { %>
+<div class="hero-prev gradient" style="background-image: url('../img/<%= prevLink.img %>.jpg')" ></div>
+<% } else {%>
+<div class="hero-prev gradient" style="background-image: url('../img/home.jpg')"></div><% }%>
+<div class="hero gradient" style="background-image: url('../img/<%= cover %>.jpg')" >
+	<div class="copy-img">
+		<img class="info" src="../img/info.svg" alt="info">
+		<div class="closed"><img src="../img/close.svg" alt="close"></div>
+	</div>
+	<div class="info-copy">
+		<div>
+			FAO promotes affordable healthy diets for all<br />
+			©Adobe/Sukjai
+		</div>
+	</div>
+	<div class="navigation-top">
+		<% if(prevLink && prevLink.url) { %>
+		<a href="<%= prevLink.url %>.html" class="prev hero-swipe" title="<%= prevLink.title %>"><img src="../img/prev.svg" alt="<%= prevLink.title %>"></a>
+		<% } else {%>
+		<a href="../<%= htmlWebpackPlugin.options.jobNumber %>.html" class="prev hero-swipe" title="homepage"><img src="../img/prev.svg" alt="Homepage"></a>
+		<% }%>
+		<% if(nextLink && nextLink.url) { %>
+		<a href="<%= nextLink.url %>.html" class="next hero-swipe" title="<%= nextLink.title %>"><img src="../img/next.svg" alt="<%= nextLink.title %>"></a>
+		<% } %>
+	</div>
+	<div class="hero-content" >
+		<div class="title bottom-left">
+			<h1><%= htmlWebpackPlugin.options.title %></h1>
+		</div>
+		<div class="navigation-bars">
+			<div class="menu">
+				<nav>
+					<ul>
+						<li style="background: url('../img/home.jpg') no-repeat center center;">
+							<a href="../<%= htmlWebpackPlugin.options.jobNumber %>.html" title="Homepage">
+								<span>Home</span>
+							</a>
+						</li>
+						<% for(var i=0; i < menu.length; i++) {%>
+						<li style="background: url('../img/<%= menu[i].img %>.jpg') no-repeat center center;">
+							<a href="<%= menu[i].url%>.html" title="<%= menu[i].title %>">
+								<span><%= menu[i].title %></span>
+							</a>
+						</li>
+						<% } %>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<% if(nextLink && nextLink.url) { %>
+<div class="hero-next gradient" style="background-image: url('../img/<%= nextLink.img %>.jpg')"  ></div>
+<% }%>
+<div class="container">
+	<div class="plus"></div>
+	<div class="wrap">
+		<div class="row">
+			<div class="half popUp up">
+				<div class="text align-center just-center d-flex direction-column">
+					<p class="extra-small-quote">
+						A better life aims to promote inclusive economic growth by reducing inequalities (between urban and rural areas, rich and poor countries, men and women).
+					</p>
+					<img class="img-shadow" src="../img/BL_logo.svg" alt="Better life" style="max-width: 200px; margin-top: 5rem">
+
+				</div>
+			</div>
+			<div class="half popUp">
+				<div class="text">
+
+					<p>A better life means:</p>
+					<ul class="list">
+						<li><em>increasing income</em> of small-scale food producers, which contributes to the overall well-being of their communities; </li>
+						<li><em>guiding government expenditures</em> towards the agricultural sector, to help rural communities, dependent primarily on agriculture, to secure their livelihoods;</li>
+						<li><em>securing land tenure,</em> by promoting ownership or strengthened rights over agricultural land, which allows men and women to build prosperous communities; </li>
+						<li><em>ensuring women’s rights</em> to land ownership and control, which should reduce gender inequalities, with benefits for overall community well-being.</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+		<div class="row is-full maxWidth bgGrey reverse">
+
+			<div class="half box-text order-bottom">
+				<div class="text popUp left">
+					<p><b>Background:</b><br />The soil of Rwanda’s Rubavu District is fertile, but most farmers lack access to seeds, fertilizer or good farming practices. Consequently, this area has the highest malnutrition rates in the country.  </p>
+					<p><b>FAO’s actions:</b><br />In 2017, Christine Mushimirimana was selected as one of the 600 participants in FAO’s social protection project. She was given two goats, a starter kit avocado seedling kit and vegetable seeds. She also received training in vegetable production and small animal husbandry from a farmer field and life school (FFLS). There were further lessons on agribusiness, nutrition, gender equality and financial literacy. Finally, participants were encouraged to form savings and loans groups, with each member contributing 400 Rwandan francs (USD 0.40) a week.</p>
+					<p><b>Results: </b><br />Mushimirimana grew the seedlings, reaping from the first harvest much more than her family could consume. She then took out a loan from the group and started a small business selling fruits and vegetables in a market along the highway.  </p>
+					<p><b>Impact:</b><br />Social protection measures are essential to reducing poverty and hunger, especially in rural areas. They allow poor smallholders to manage risks; engage in more economic and productive activities; and envisage a food-secure future. </p>
+				</div>
+			</div>
+			<div class="half bg-half-indicator mustard order-bottom">
+				<div class="text right-block">
+					<h2>Rwanda: <br />social protection measures to turn women smallholders into entrepreneurs </h2>
+					<h3>TARGET 2.3 <span>Indicator 2.3.2</span></h3>
+					<p>Average income of small-scale food producers, by sex and Indigenous status</p>
+					<img class="icon" src="../img/E-WEB-Goal-02.png" alt="four betters">
+
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="full">
+				<div class="copy-img">
+					<img class="info" src="../img/info.svg" alt="info">
+					<div class="closed"><img src="../img/close.svg" alt="close"></div>
+				</div>
+				<div class="info-copy">
+					<div>
+						Farmafield Schools – here in Rwanda – teach farmers to diversify their techniques for higher yields<br />
+						©FAO/Marco Longari
+					</div>
+				</div>
+				<img class="full-img" data-src="../img/ch6_1.jpg" />
+			</div>
+		</div>
+		<div class="row is-full maxWidth bgGrey reverse">
+			<div class="half bg-half-indicator red">
+				<div class="text">
+					<h2>The Bolivarian Republic of Venezuela: Indigenous women leading the way to restoration and CONSERVATION of the Imataca Forest Reserve </h2>
+					<h3>TARGET 5.<span>a</span> <span>Indicator 5.a.1</span></h3>
+					<p>(a) Proportion of total agricultural population with ownership or secure rights over agricultural land, by sex; and (b) share of women among owners or rights-bearers of agricultural land, by type of tenure</p>
+					<img class="icon" src="../img/E-WEB-Goal-05.png" alt="four betters">
+				</div>
+			</div>
+			<div class="half box-text order-bottom">
+				<div class="text popUp right-block">
+					<p><b>Background:</b><br />The Indigenous Kariña community lives in the Imataca Forest Reserve, which hosts jaguars, tapirs, howler monkeys and the giant harpy eagle. Regardless of this biodiversity and of the Kariña’s ancestral claims, outsiders have been mining the earth and felling trees in the area. The Kariña community, meanwhile, was heavily male-dominated, with women, by their own description, having “neither voice nor vote”. </p>
+					<p><b>FAO’s actions:</b><br />In coordination with the Venezuelan Government, FAO and the GEF have helped Kariña women set up a business that finds new ways for the forest to provide, through the commercialization of non-wood products.  </p>
+					<p><b>Results: </b><br />The Venezuelan Government has granted the Kariña 7000 hectares to co-manage. This land has become the centre of training and restoration activities to revitalize areas degraded by mining.  </p>
+					<p><b>Impact:</b><br />Beyond the improved forest management and livelihoods, there has been a change of mindset among the Kariña, with a new belief by women in their own management capacities. In the words of the group’s “captain”, Cecilia Rivas, the community has become the “true guardian of the forest”. In Latin America and elsewhere, FAO works with Indigenous Peoples to ensure that their voices are heard, and their ancestral knowledge and stewardship recognized. </p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="full">
+				<div class="copy-img">
+					<img class="info" src="../img/info.svg" alt="info">
+					<div class="closed"><img src="../img/close.svg" alt="close"></div>
+				</div>
+				<div class="info-copy">
+					<div>
+						Indigenous Kariña women take the lead in restoring the Imataca Forest Reserve in the Bolivarian Republic of Venezuela<br />
+						©FAO/Jesús Contreras
+					</div>
+				</div>
+				<img class="full-img" style="object-position: top center;" data-src="../img/ch6_2.jpg" />
+			</div>
+		</div>
+		<div class="row is-full maxWidth bgGrey reverse">
+
+			<div class="half box-text">
+				<div class="text popUp left">
+					<p><b>Background:</b><br />While gender equality has advanced in Guatemala, male hegemony still characterizes the rural culture. Less than 8 percent of Guatemalan women farmers own the land they farm. This makes it difficult for them to obtain credits and undermines their decision-making power.</p>
+					<p><b>FAO’s actions:</b><br />FAO has helped improve the Ministry of Agriculture, Livestock and Food’s capacity to develop a gender equality policy, with technical advice to support a new Special Cabinet for Women. The Organization also helped establish a technical working group on rural development that would operate across institutions and sectors, with a focus on gender and Indigenous Peoples. </p>
+					<p><b>Results: </b><br />In August 2016, the Guatemalan Government ratified its first policy for gender equality in the areas of national food security, nutrition and rural development. FAO and other UN agencies have facilitated the country’s cultural shift by bringing together government officials and civil society to turn the policy into practice. </p>
+					<p><b>Impact:</b><br />Such policies are milestones in implementing the <a href="https://www.ohchr.org/en/instruments-mechanisms/instruments/convention-elimination-all-forms-discrimination-against-women" class="link" title="CEDAW" target="_blank">UN Convention on the Elimination of All Forms of Discrimination against Women</a> (CEDAW). FAO, through strengthening the institutional and legal framework, makes progressive and lasting improvement in the quality of life of rural and Indigenous women a reality, especially in developing countries. </p>
+				</div>
+			</div>
+			<div class="half bg-half-indicator red direction-column">
+				<div class="text right-block">
+					<h2>Guatemala: <br /> giving women a voice in food security and nutrition</h2>
+					<h3>Target 5.<span>a</span> <span>Indicator 5.a.2</span></h3>
+					<p>Proportion of countries where the legal framework (including customary law) guarantees women’s equal rights to land ownership and/or control</p>
+					<img class="icon" src="../img/E-WEB-Goal-05.png" alt="four betters">
+
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="full">
+				<div class="copy-img">
+					<img class="info" src="../img/info.svg" alt="info">
+					<div class="closed"><img src="../img/close.svg" alt="close"></div>
+				</div>
+				<div class="info-copy">
+					<div>
+						Women landowners — as here in Somalia — remain a small minority in much of the world<br />
+						©FAO/Isak Amin/ARETE
+					</div>
+				</div>
+				<img class="full-img" data-src="../img/ch6_3.jpg" />
+			</div>
+		</div>
+		
+		<%= require('html-loader!./back-top.html') %>
+		<div class="navigation">
+			<% if(prevLink && prevLink.url) { %>
+			<a href="<%= prevLink.url %>.html" class="prev" title="<%= prevLink.title %>">prev</a>
+			<% } else {%>
+			<a href="../<%= htmlWebpackPlugin.options.jobNumber %>.html" class="prev" title="homepage">prev</a>
+			<% }%>
+			<% if(nextLink && nextLink.url) { %>
+			<a href="<%= nextLink.url %>.html" class="next" title="<%= nextLink.title %>">next</a>
+			<% } %>
+		</div>
+	</div>
+</div>
+<%= require('html-loader!./footer.html') %>
+</body>
+</html>

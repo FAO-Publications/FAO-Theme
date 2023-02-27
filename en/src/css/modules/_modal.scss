@@ -1,0 +1,12 @@
+body.modal-open{
+    overflow:visible!important;
+}
+.modal {
+    &.note {
+        @include alternativeFont($font-weight-normal, $line-height-sm);
+
+        .modal-content {
+            max-width: 320px;
+        }
+    }
+}

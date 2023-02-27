@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="<%= htmlWebpackPlugin.options.lang %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta name="DC.Identifier" content="<%= htmlWebpackPlugin.options.DOI %>" />
+    <meta name="description" content="<%= htmlWebpackPlugin.options.description %>" />
+
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <%
+    var location = htmlWebpackPlugin.options.filename.split('/').pop();
+    for(var x=0; x < totLang.length; x++) {
+    %>
+    <% if(totLang[x].lang === htmlWebpackPlugin.options.lang) { %>
+    <link rel="canonical" href="https://www.fao.org/3/<%= totLang[x].code %>/online/<%= acronym %>-<%= year %>/<%= location %>">
+    <% } else { %>
+    <link rel="alternate" hreflang="<%= totLang[x].lang %>" href="https://www.fao.org/3/<%= totLang[x].code %>/online/<%= acronym %>-<%= year %>/<%= location %>">
+    <% } %>
+    <% } %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127786997_9">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-127786997-9');
+    </script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
+</head>
+<body class="<%= structure %>">
+    <div>
+        <div class="head-wrap">
+            <header>
+                <div class="header">
+                    <div class="logos">
+                        <a href="http://www.fao.org" target="_blank" title="FAO - Food and Agriculture Organization"><img class="main-logo" src="../img/logo.svg" alt="FAO"></a>
+                    </div>
+                    <div class="language">
+                        <ul>
+                            <% for(var x=0; x < totLang.length; x++) {%>
+                            <% if(totLang[x].lang !== htmlWebpackPlugin.options.lang) { %>
+                            <li>
+                                <a href="http://www.fao.org/3/<%= totLang[x].code %>/online/<%= totLang[x].code %>.html" title="<%= totLang[x].code %>">
+                                    <%= totLang[x].text %>
+                                </a>
+                            </li>
+                            <% } else { %>
+                            <li class="active">
+                                <%= totLang[x].text %>
+                                <img src="../img/caret-down.svg" alt="language">
+                            </li>
+                            <% } %>
+                            <% } %>
+                        </ul>
+                    </div>
+                    <div id="menu-toggle">
+                        <label for="toggle">
+                            <input type="checkbox" id="toggle"/>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>
+    <% if(prevLink && prevLink.url) { %>
+    <div class="hero-prev gradient-top" style="background-image: url('../img/<%= prevLink.img %>.jpg')"></div>
+    <% } else {%>
+    <div class="hero-prev" style="background-image: url('../img/home.jpg')"></div><% }%>
+    <div class="hero gradient-top" style="background-image: url('../img/<%= cover %>.jpg')">
+        <div class="copy-img">
+            <img class="info" src="../img/info.svg" alt="info">
+            <div class="closed"><img src="../img/close.svg" alt="close"></div>
+        </div>
+        <div class="info-copy">
+            <div>
+                Ancestral grape-growing preserves the sloping land around Málaga, Spain<br />
+                ©FAO/Beatriz Moreno Escalona
+
+            </div>
+        </div>
+        <div class="navigation-top">
+            <% if(prevLink && prevLink.url) { %>
+            <a href="<%= prevLink.url %>.html" class="prev hero-swipe" title="<%= prevLink.title %>"><img src="../img/prev.svg" alt="<%= prevLink.title %>"></a>
+            <% } else {%>
+            <a href="../<%= htmlWebpackPlugin.options.jobNumber %>.html" class="prev hero-swipe" title="homepage"><img src="../img/prev.svg" alt="Homepage"></a>
+            <% }%>
+            <% if(nextLink && nextLink.url) { %>
+            <a href="<%= nextLink.url %>.html" class="next hero-swipe" title="<%= nextLink.title %>"><img src="../img/next.svg" alt="<%= nextLink.title %>"></a>
+            <% } %>
+        </div>
+        <div class="hero-content">
+            <div class="title top-left">
+                <h1><%= htmlWebpackPlugin.options.title %></h1>
+            </div>
+            <div class="navigation-bars">
+                <div class="menu">
+                    <nav>
+                        <ul>
+                            <li style="background: url('../img/home.jpg') no-repeat center center;">
+                                <a href="../<%= htmlWebpackPlugin.options.jobNumber %>.html" title="Homepage">
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <% for(var i=0; i < menu.length; i++) {%>
+                            <li style="background: url('../img/<%= menu[i].img %>.jpg') no-repeat center center;">
+                                <a href="<%= menu[i].url%>.html" title="<%= menu[i].title %>">
+                                    <span><%= menu[i].title %></span>
+                                </a>
+                            </li>
+                            <% } %>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% if(nextLink && nextLink.url) { %>
+    <div class="hero-next gradient" style="background-image: url('../img/<%= nextLink.img %>.jpg')"></div>
+    <% }%>
+    <div class="container">
+        <div class="plus"></div>
+        <div class="wrap">
+            <div class="row reverse">
+                <div class="half">
+                    <div class="text">
+                        <img class="img-shadow" src="../img/four_betters.svg" alt="four betters">
+                    </div>
+                </div>
+                <div class="half popUp">
+                    <div class="text">
+                        <p>With the SDGs intrinsic to FAO’s overall theory of change, the Organization is vitally invested in advancing them. Consequently, the Strategic Framework adopted in July 2021 seeks to support the 2030 Agenda through the transformation to more efficient, inclusive, resilient and sustainable agrifood systems. This approach has been synthesized as <b>better production; better nutrition;</b> a <b>better environment;</b> and a <b>better life,</b> leaving no one behind.</p>
+
+                        <p>More than a concept, the four betters are an organizing principle for FAO’s work on SDG 1 (No Poverty), SDG 2 (Zero Hunger) and SDG 10 (Reduced Inequalities), as well as for furthering the broader 2030 Agenda. Actions to achieve SDG 2 and realize sustainable agrifood systems will accelerate progress across most other Goals and targets. Key SDGs and their indicators – including all indicators for which FAO is a custodian or contributing agency – act as instructions to sharpen the focus; track progress; and formulate aspirations for medium- or long-term outcome and impact. </p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="half popUp left">
+                    <div class="text">
+                        <p>The four betters do not posit individual or alternative pathways to the 2030 Agenda. Instead, they reflect and build on the interconnected economic, social and environmental dimensions of agrifood systems. These interlinkages tend to manifest themselves in three main areas: agricultural productivity, environmental impact and social sustainability (with the proviso that productivity is mainly linked to economic sustainability). FAO’s agrifood systems approach thus casts agriculture, beyond its production and macroeconomic functions, as the means to realize food security and resilient livelihoods, promote innovation, and catalyse investment and partnerships. </p>
+                        <p>This publication aims to illustrate FAO’s work under the four betters to support the implementation of the Sustainable Development Goals.</p>
+                    </div>
+                </div>
+                <div class="half graphic card">
+                    <div class="text">
+                        <div class="card-row">
+                            <a href="chapter-3.html" title="Better Production" >
+                                <img class="img-shadow" src="../img/BP_card.png" alt="four betters" >
+                            </a>
+
+                            <a href="chapter-4.html" title="Better Nutrition" >
+                                <img class="img-shadow" src="../img/BN_card.png" alt="four betters" >
+                            </a>
+                     
+                            <a href="chapter-5.html" title="Better Environment" >
+                                <img class="img-shadow" src="../img/BE_card.png" alt="four betters" >
+                            </a>
+
+                            <a href="chapter-6.html" title="Better Life" >
+                                <img class="img-shadow" src="../img/BL_card.png" alt="four betters" >
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <%= require('html-loader!./back-top.html') %>
+            <div class="navigation">
+                <% if(prevLink && prevLink.url) { %>
+                <a href="<%= prevLink.url %>.html" class="prev" title="<%= prevLink.title %>">prev</a>
+                <% } else {%>
+                <a href="../<%= htmlWebpackPlugin.options.jobNumber %>.html" class="prev" title="homepage">prev</a>
+                <% }%>
+                <% if(nextLink && nextLink.url) { %>
+                <a href="<%= nextLink.url %>.html" class="next" title="<%= nextLink.title %>">next</a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <%= require('html-loader!./footer.html') %>
+</body>
+</html>

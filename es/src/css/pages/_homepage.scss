@@ -1,0 +1,37 @@
+.home{
+    &.hero{
+        background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), 
+        url("../images/primary-image.jpg") no-repeat center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        @include hero-height;
+        
+        .container{
+            align-self: center;
+
+        }
+        
+    }
+}
+
+@media only screen and (min-width: map-get($grid-breakpoints, xxl)) {
+    .home{
+        &.hero{
+        .container{
+            align-self: self-start;
+            padding-top:14vh!important;
+        }
+        
+        }
+    }
+}
+
+@media only screen and (max-width: map-get($grid-breakpoints, md)) {
+    .home{
+        &.hero{
+        @include hero-height-mobile;
+        }
+    }
+}

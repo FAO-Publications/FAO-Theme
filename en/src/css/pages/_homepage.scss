@@ -1,0 +1,60 @@
+.home {
+    &.hero {
+        @include hero-height;
+
+        .container {
+            align-self: center;
+        }
+    }
+}
+.pulse {
+    animation: pulse 1s infinite;
+}
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+@media only screen and (min-width: map-get($grid-breakpoints, xxl)) {
+    .home{
+        &.hero{
+        .container{
+            align-self: self-start;
+            padding-top:14vh!important;
+        }
+        
+        }
+    }
+}
+@media only screen and (max-width: map-get($grid-breakpoints, md)) {
+    .home {
+        &.hero {
+            @include hero-height-mobile;
+
+            
+        }
+    }
+}
+@media only screen and (max-width: map-get($grid-breakpoints, sm)) {
+    .home {
+        &.hero {
+            @include hero-height-mobile;
+
+            .container {
+                align-self: center;
+
+                .border {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

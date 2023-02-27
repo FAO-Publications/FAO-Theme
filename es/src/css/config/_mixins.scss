@@ -1,0 +1,266 @@
+// fonts
+@mixin primaryFont($font-weight, $line-height) {
+  font-weight: $font-weight;
+  line-height: $line-height;
+  font-family: merriweather,serif;
+}
+
+
+@mixin secondaryFont($font-weight, $line-height) {
+  font-weight: $font-weight;
+  line-height: $line-height;
+  font-family: 'Barlow', sans-serif;
+}
+
+@mixin alternativeFont($font-weight, $line-height) {
+  font-weight: $font-weight;
+  line-height: $line-height;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+// hero height
+@mixin hero-height{
+  height: calc(#{$viewportHeight} - #{$headerHeight} - #{$navBottomHeight});
+}
+
+@mixin hero-height-mobile{
+  height: calc(#{$viewportHeight} - #{$headerHeight} );
+}
+
+
+// media queries
+@mixin mobile {
+    @media (max-width: 599px) { @content; }
+  }
+  
+  @mixin mobile-landscape {
+    @media (max-width: 1024px) and (orientation: landscape) { @content; }
+  }
+  @mixin tablet-portrait {
+    @media (min-width: 768px) { @content; }
+  }
+  @mixin tablet-landscape {
+    @media (min-width: 1024px) { @content; }
+  }
+  @mixin desktop {
+    @media (min-width: 1280px) { @content; }
+  }
+  @mixin desktop-large {
+    @media (min-width: 1366px) { @content; }
+  }
+  
+  @mixin big-desktop {
+    @media (min-width: 1800px) { @content; }
+  }
+  
+  @mixin huge-desktop {
+    @media (min-width: 2560px) { @content; }
+  }
+  
+  
+  
+  // menu
+  
+  @mixin menuOpen{
+    position: fixed;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    visibility: visible;
+    margin-top: 0;
+    top: 0px;
+    overflow: auto;
+    overflow-y: overlay!important;
+    z-index: 10000;
+    right: 0;
+    background: rgba(0,0,0, 0.88);
+    display: block;
+    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    padding-top: 0;
+  
+  
+  
+    @include tablet-landscape{
+      top: 58px;
+    }
+  
+    @include desktop{
+      top: 65px;
+    }
+  
+    @include menuFullScreen;
+  
+    &.slide-in {
+      animation: slide-in 0.5s forwards;
+      -webkit-animation: slide-in 0.5s forwards;
+    }
+  
+    @keyframes slide-in {
+      100% { transform: translateY(0%); }
+    }
+  
+    @-webkit-keyframes slide-in {
+      100% { -webkit-transform: translateY(0%); }
+    }
+  }
+  
+  @mixin menuFullScreen{
+  
+    nav {
+      display: flex;
+      max-width: calc(100vw - #{$gutters} * 2);
+      margin: 0 auto;
+      overflow: visible;
+      visibility: visible;
+      height: auto;
+      min-height: 100%;
+      line-height: inherit;
+      padding: 2rem 0 4rem 0;
+      position: relative;
+  
+  
+      @include tablet-portrait{
+        max-width: $center;
+        max-height: 150vh;
+  
+      }
+      @include tablet-landscape{
+        max-width: calc(#{$container} - #{$gutters} * 2);
+        padding: 0;
+      }
+  
+      @include desktop{
+        max-height: calc(768px + 70vh);
+      }
+  
+      @include big-desktop{
+        max-height: 100vh;
+        max-width: calc(#{$container-big} - #{$gutters} * 2);
+      }
+  
+      @include huge-desktop{
+        max-width: calc(#{$container-huge} - #{$gutters} * 2);
+      }
+  
+      ul {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        margin-top: -65px;
+        li{
+          width: 100%;
+          margin: 0 0 0.5rem 0;
+          position: relative;
+          border-bottom: 1px solid white;
+          padding: $gutters/4 0;
+          cursor: pointer;
+          max-height: 28vh;
+          flex: 1 1 auto;
+          height: 100%;
+          -moz-background-size: cover;
+          -webkit-background-size: cover;
+          background-size: cover!important;
+          overflow: hidden;
+          background-color: black;
+          transition: ease-in-out transform .3s;
+  
+  
+  
+          @include tablet-landscape{
+            width: 32%;
+            margin: 0 1% 1% 0;
+          }
+  
+          @include desktop-large{
+            &:hover {
+              -webkit-transform: scale(1.03);
+              transform: scale(1.03);
+              -webkit-animation: flash 1.5s;
+              animation: flash 1.5s;
+            }
+          }
+  
+          a {
+            text-align: left;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            bottom: $gutters;
+            left: $gutters;
+            background-color: unset;
+            text-transform: uppercase;
+            font-size: $menuFullSize;
+            line-height: $menuFullLineHeight;
+            @include titleFont1($weight: 900);
+            color: #fff;
+            text-shadow: 0px 3px 6px #000000;
+  
+            span{
+              visibility: visible;
+              margin: 0 0 1rem 1rem;
+            }
+          }
+  
+  
+  
+        }
+  
+      }
+    }
+  
+  }
+  
+  .menu-open{
+    z-index: 99999;
+    header #menu-toggle{
+      z-index: 99999!important;
+      label{
+        span{
+          background-color: black!important;
+        }
+        input[type="checkbox"]:checked ~ span:nth-of-type(1){
+          transform:rotatez(47deg) translate(4px,1px)!important;
+        }
+  
+        input[type="checkbox"]:checked ~ span:nth-of-type(3){
+          transform: translate(4px,-8px) rotatez(47deg)!important;
+        }
+  
+        @include tablet-landscape{
+          input[type="checkbox"]:checked ~ span:nth-of-type(1){
+            transform:rotatez(45deg) translate(3px, 4px)!important
+          }
+  
+          input[type="checkbox"]:checked ~ span:nth-of-type(2){
+            transform:rotatez(-45deg) translate(-1px, -1px)!important
+          }
+  
+          input[type="checkbox"]:checked ~ span:nth-of-type(3){
+            transform: translate(-1px, -6px) rotatez(45deg)!important
+          }
+        }
+      }
+    }
+  }
+  
+  @-webkit-keyframes flash {
+    0% {
+      opacity: .7;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes flash {
+    0% {
+      opacity: .7;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  

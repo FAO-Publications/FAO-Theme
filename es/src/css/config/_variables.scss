@@ -1,0 +1,150 @@
+$primary: #00829a;
+$secondary: #004d59;
+$grey:#4d4d4d;
+$lightGreyNav:#b3b3b3;
+$dark: #000;
+$dark-light: rgba(51, 51, 51, 0.80);
+$white-opacity: rgba(255, 255, 255, 0.85);
+$box: #e3ebed;
+$table-striped-bg:#ebf5f7;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "navigationBg": $grey,
+  "dark": $dark,
+  "white-opacity": $white-opacity,
+  "dark-light": $dark-light,
+  "box": $box,
+);
+
+// size height
+$viewportHeight: 100vh;
+$headerHeight: 66px;
+$navBottomHeight: 67px;
+
+// font
+$font-weight-medium: 500 !default;
+$line-height-xs: 0.8;
+$line-height-regular: 1;
+$font-size-medium: 1.2rem;
+$font-size-1: 1.125rem;
+$font-size-2: 1.2rem;
+$font-size-3: 1.3rem;
+$font-size-4: 1.4rem;
+$font-size-5: 1.5rem;
+
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 960px,
+  xxl: 1000px
+);
+
+// gutters
+$gutters: 2rem;
+
+// // columns
+// $container: 1200px;
+// $container-big: 1700px;
+// $container-huge: 1900px;
+// $center: 812px;
+
+//themes
+$mainColor: #000000;
+
+
+// font size
+$bodyFontSizeMobile: 1.8rem;
+$bodyLineHeightMobile: 2.8rem;
+
+$bodyFontSize: 1.3rem;
+$bodyLineHeight: 2.2rem;
+
+$bodyFontSizeBig: 1.5rem;
+$bodyLineHeightBig: 2.6rem;
+
+$bodyFontSizeHuge: 1.6rem;
+$bodyLineHeightHuge: 2.8rem;
+
+
+$creditsSize: 2.2rem;
+$creditsLineHeight: 3rem;
+
+// menu
+$menuFontSizeSmall: 1.4rem;
+$menuLineHeightSmall: 1.7rem;
+$menuFontSize: 1.6rem;
+$menuLineHeight: 1.9rem;
+$subMenuFontSize: 1.6rem;
+$subMenuLineHeight: 1.9rem;
+
+$menuFullSize: 2.3rem;
+$menuFullLineHeight: 2.3rem;
+
+$subMenuFullSize: 2.0rem;
+$subMenuFullLineHeight: 2.1rem;
+
+// titles
+$h1-sizeMobile: 3.3rem;
+$h1-size: 6.7rem;
+$h1-lineHeight: 6.7rem;
+$h1-lineHeightMobile: 3.3rem;
+
+$h2-size: 4rem;
+$h2-lineHeight: 4rem;
+$h2-lineHeightMobile: 3rem;
+$h2-sizeMobile: 2.5rem;
+
+$h3-sizeMobile: 2.5rem;
+$h3-lineHeightMobile: 3rem;
+$h3-size: 3rem;
+$h3-lineHeight: 4rem;
+
+$h4-sizeMobile: 2.2rem;
+$h4-size: 2rem;
+$h4-lineHeight: 2.2rem;
+
+$boxTitle: 2.2rem;
+$boxContent: 1.5rem;
+$boxContentMobile: 1.96rem;
+
+// boxes
+$bgBox: #ffffff;
+$boxBorderColor: #E7E8E4;
+$boxTitleColor: black;
+
+// notes
+$notesTextMobile: 1.6rem;
+$notesTextDesk: 1.2rem;
+$supSize: 1.3rem;
+
+// caption
+$bgCaption: transparent;
+$captionFont: 1.3rem;
+$captionColor: #000000;
+
+// header
+$bgMenuBars: #000000;
+$colorHeader: #000000;
+$bgHeader: #ffffff;
+
+// text colors
+$bodyColor: #000000;
+$menuColor: #000000;
+$menuColorHover: #ccc;
+
+// nav
+$navigationHeight: 6rem;
+$bgNavigation: #FFFFFFD8 0% 0% no-repeat padding-box;
+
+// footer
+$footerText: 1.6rem;
+$footerColor: #000000;
+$bgFooter: #ffffff;
+
+
+// download
+$bgDownload: #ffffff

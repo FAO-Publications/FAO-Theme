@@ -1,0 +1,20 @@
+.custom-tooltip {
+    --bs-tooltip-bg: var(--bs-white);
+    --bs-tooltip-color: var(--bs-black);
+}
+.tooltip {
+    border-bottom: none;
+
+
+    .tooltip-arrow {
+        display: none;
+    }
+
+    .tooltip-inner {
+        max-width: 460px;
+        text-align: left;
+        border-radius: 0;
+        margin-top: -75px;
+        margin-right: -37px;
+    }
+}

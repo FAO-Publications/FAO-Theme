@@ -1,0 +1,40 @@
+#ImgPreload {
+    width: 0px;
+    height: 0px;
+    display: none;
+    background-image: url("../images/primary-image.jpg");
+}
+
+ul.list-box {
+    margin: 0.75em 0;
+    padding: 0 1em;
+    list-style: none;
+    li{
+        padding-left:1rem;
+       &::marker{
+        content: "▶";
+        color:$primary;
+       } 
+    }
+}
+.prova{
+    &::after{
+        content:"";
+        background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('../images/primary-image.jpg') no-repeat center/cover;min-height: 500px;
+    }
+}
+.bg {
+    position: relative; 
+    left: -50%; 
+    width: 200%; 
+    height: 200%;
+  }
+  .bg div {
+    background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('../images/primary-image.jpg') no-repeat center/cover;min-height: 500px;
+    background-attachment: fixed;
+  }
+@media only screen and (max-width: map-get($grid-breakpoints, xl)) {
+    .col-md-9{
+        width: 100%;
+    }
+}

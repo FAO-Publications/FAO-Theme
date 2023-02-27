@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="<%= htmlWebpackPlugin.options.lang %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta name="DC.Identifier" content="<%= htmlWebpackPlugin.options.DOI %>" />
+    <meta name="description" content="<%= htmlWebpackPlugin.options.description %>" />
+
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <%
+    var location = htmlWebpackPlugin.options.filename.split('/').pop();
+    for(var x=0; x < totLang.length; x++) {
+    %>
+    <% if(totLang[x].lang === htmlWebpackPlugin.options.lang) { %>
+    <link rel="canonical" href="https://www.fao.org/3/<%= totLang[x].code %>/online/<%= acronym %>-<%= year %>/<%= location %>">
+    <% } else { %>
+    <link rel="alternate" hreflang="<%= totLang[x].lang %>" href="https://www.fao.org/3/<%= totLang[x].code %>/online/<%= acronym %>-<%= year %>/<%= location %>">
+    <% } %>
+    <% } %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127786997_9">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-127786997-9');
+    </script>
+</head>
+<body class="<%= structure %>">
+    <div>
+        <div class="head-wrap">
+            <header>
+                <div class="header">
+                    <div class="logos">
+                        <a href="http://www.fao.org" target="_blank" title="FAO - Food and Agriculture Organization"><img class="main-logo" src="../img/logo.svg" alt="FAO"></a>
+                    </div>
+                    <div class="language">
+                        <ul>
+                            <% for(var x=0; x < totLang.length; x++) {%>
+                            <% if(totLang[x].lang !== htmlWebpackPlugin.options.lang) { %>
+                            <li>
+                                <a href="http://www.fao.org/3/<%= totLang[x].code %>/online/<%= totLang[x].code %>.html" title="<%= totLang[x].code %>">
+                                    <%= totLang[x].text %>
+                                </a>
+                            </li>
+                            <% } else { %>
+                            <li class="active">
+                                <%= totLang[x].text %>
+                                <img src="../img/caret-down.svg" alt="language">
+                            </li>
+                            <% } %>
+                            <% } %>
+                        </ul>
+                    </div>
+                    <div id="menu-toggle">
+                        <label for="toggle">
+                            <input type="checkbox" id="toggle"/>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>
+    <% if(prevLink && prevLink.url) { %>
+    <div class="hero-prev gradient-top" style="background-image: url('../img/<%= prevLink.img %>.jpg')"></div>
+    <% } else {%>
+    <div class="hero-prev" style="background-image: url('../img/home.jpg')"></div><% }%>
+    <div class="hero gradient" style="background-image: url('../img/<%= cover %>.jpg')">
+        <div class="copy-img">
+            <img class="info" src="../img/info.svg" alt="info">
+            <div class="closed"><img src="../img/close.svg" alt="close"></div>
+        </div>
+        <div class="info-copy">
+            <div>
+                FAO leads the call for more sustainable agrifood systems<br />
+                ©Unsplash/Ivan Bandura
+            </div>
+        </div>
+        <div class="navigation-top">
+            <% if(prevLink && prevLink.url) { %>
+            <a href="<%= prevLink.url %>.html" class="prev hero-swipe" title="<%= prevLink.title %>"><img src="../img/prev.svg" alt="<%= prevLink.title %>"></a>
+            <% } else {%>
+            <a href="../<%= htmlWebpackPlugin.options.jobNumber %>.html" class="prev hero-swipe" title="homepage"><img src="../img/prev.svg" alt="Homepage"></a>
+            <% }%>
+            <% if(nextLink && nextLink.url) { %>
+            <a href="<%= nextLink.url %>.html" class="next hero-swipe" title="<%= nextLink.title %>"><img src="../img/next.svg" alt="<%= nextLink.title %>"></a>
+            <% } %>
+        </div>
+        <div class="hero-content">
+            <div class="title bottom-left">
+                <h1><%= htmlWebpackPlugin.options.title %></h1>
+            </div>
+            <div class="navigation-bars">
+                <div class="menu">
+                    <nav>
+                        <ul>
+                            <li style="background: url('../img/home.jpg') no-repeat center center;">
+                                <a href="../<%= htmlWebpackPlugin.options.jobNumber %>.html" title="Homepage">
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <% for(var i=0; i < menu.length; i++) {%>
+                            <li style="background: url('../img/<%= menu[i].img %>.jpg') no-repeat center center;">
+                                <a href="<%= menu[i].url%>.html" title="<%= menu[i].title %>">
+                                    <span><%= menu[i].title %></span>
+                                </a>
+                            </li>
+                            <% } %>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% if(nextLink && nextLink.url) { %>
+    <div class="hero-next gradient" style="background-image: url('../img/<%= nextLink.img %>.jpg')"></div>
+    <% }%>
+    <div class="container">
+        <div class="plus"></div>
+        <div class="wrap">
+            <div class="row">
+                <div class="half popUp up">
+                    <div class="text align-center just-center direction-column d-flex">
+                        <p class="extra-small-quote">
+                            Better production seeks to ensure sustainable consumption and production patterns, by way of efficient and inclusive food and agriculture supply chains at the local level and beyond. In doing so, it promotes resilient and sustainable agrifood systems in a changing climate and environment.
+                        </p>
+                        <img class="img-shadow" src="../img/BP_logo.svg" alt="Better Production" style="max-width: 200px;margin-top: 5rem">
+                    </div>
+                </div>
+                <div class="half popUp">
+                    <div class="text">
+                        <p>Better production means:</p>
+                        <ul class="list">
+                            <li>
+                                <em>increased productivity,</em> which results in higher income for the producers and a greater abundance of commodities in the community;
+                            </li>
+                            <li><em>sustainable agriculture,</em> which drives higher productivity and food security, while nurturing healthy ecosystems and supporting the sustainable management of natural resources;</li>
+                            <li><em>freshwater use efficiency</em> to address both the irrigation and consumption needs of  communities, and thus make them more resilient;</li>
+                            <li><em>increased freshwater withdrawal</em> to make communities water-sufficient and improve public health and well-being;</li>
+                            <li><em>combating illegal, unreported and unregulated fishing</em> to secure livelihoods in fishing communities; and</li>
+                            <li><em>sustainable forest management</em> to create a double dividend for local income and conservation of resources.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row is-full maxWidth bgGrey reverse">
+                <div class="half bg-half-indicator mustard">
+                    <div class="text">
+                        <h2>Madagascar: <br />higher-yielding rice equals more food security for farmers</h2>
+                        <h3>TARGET 2.3 <span>Indicator 2.3.1</span></h3>
+                        <p>Volume of production per labour unit by classes of farming/pastoral/forestry enterprise size</p>
+                        <img class="icon" src="../img/E-WEB-Goal-02.png" alt="four betters">
+
+                    </div>
+                </div>
+                <div class="half box-text order-bottom">
+                    <div class="text popUp right-block">
+                        <p><b>Background:</b><br />Much of Madagascar – and rural Madagascar in particular – is a three-rice-meals-a-day society. But with average daily incomes below USD 1.90, food insecurity runs deep. Added to this, domestic rice production trails demand; reliance on imports is traditionally high. </p>
+                        <p><b>FAO’s actions:</b><br />Under a 2019 FAO South¬South Cooperation project involving China and Madagascar, Chinese experts have introduced a higher-yielding variety of rice, developed specifically to suit the island’s climatic and soil conditions. Family farmers have been offered training.</p>
+                        <p><b>Results: </b><br />Within less than a year, the harvest per hectare had tripled on average. The aim is to extend training  to 1 000 farmers and eventually quadruple output.</p>
+                        <p><b>Impact:</b><br />The introduction of the new variety marks a step towards rice self-sufficiency in Madagascar, with its corollary of lesser import bills. It also embeds knowledge among farmers, boosts food security at the local level, and stabilizes communities. </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="full">
+                    <div class="copy-img">
+                        <img class="info" src="../img/info.svg" alt="info">
+                        <div class="closed"><img src="../img/close.svg" alt="close"></div>
+                    </div>
+                    <div class="info-copy">
+                        <div>
+                            Threshing rice over an old barrel, Betroka, Madagascar<br />
+                            ©FAO/Yasuyoshi Chiba
+                        </div>
+                    </div>
+                    <img class="full-img" data-src="../img/ch3_1.jpg" />
+                </div>
+            </div>
+            <div class="row is-full maxWidth bgGrey reverse">
+                <div class="half box-text">
+                    <div class="text popUp left">
+                        <p><b>Background:</b><br />Land fragmentation is a by-product of (re)privatization in Central and Eastern Europe. The breakup of large state cooperatives left farms in North Macedonia with an average size of less than 2 hectares. It has proved accordingly difficult to scale up production and make the leap to commercial farming. </p>
+                        <p><b>FAO’s actions:</b><br />The FAO-European Union-funded MAINLAND project, in close cooperation with North Macedonia’s Ministry of Agriculture, Forestry and Water Economy, has set out to increase farm size and improve agricultural infrastructure. </p>
+                        <p><b>Results: </b><br />A majority of landowners in the village of Egri have chosen to consolidate their land, blazing a trail for the rest of the country. The number of parcels has been reduced and their shape regularized.  A rise in yields of 30 to 40 percent is expected.</p>
+                        <p><b>Impact:</b><br />Land consolidation is improving competitiveness and spurring applications for European Union funding to invest in new machinery. Expansions are meanwhile being planned to the drip-irrigation system, which encourages greater crop variety. </p>
+                    </div>
+                </div>
+                <div class="half bg-half-indicator mustard">
+                    <div class="text right-block">
+                        <h2>North Macedonia: <br />consolidating land for higher productivity</h2>
+                        <h3>TARGET 2.4 <span>Indicator 2.4.1</span></h3>
+                        <p>Proportion of agricultural area under productive and sustainable agriculture</p>
+                        <img class="icon" src="../img/E-WEB-Goal-02.png" alt="four betters">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="full">
+                    <div class="copy-img">
+                        <img class="info" src="../img/info.svg" alt="info">
+                        <div class="closed"><img src="../img/close.svg" alt="close"></div>
+                    </div>
+                    <div class="info-copy">
+                        <div>
+                            FAO pilot area for land consolidation in Egri, North Macedonia<br />
+                            ©FAO
+                        </div>
+                    </div>
+                    <img class="full-img" data-src="../img/ch3_2.jpg" />
+                </div>
+            </div>
+            <div class="row is-full maxWidth bgGrey reverse">
+                <div class="half bg-half-indicator light-blue">
+                    <div class="text alternative-text">
+                        <h2>Guatemala: <br />harvesting rainwater for food and fish farming in the Dry Corridor</h2>
+                        <h3>TARGET 6.4 <span>Indicator 6.4.2 </span></h3>
+                        <p>Level of water stress: freshwater withdrawal as a proportion of available freshwater resources</p>
+                        <img class="icon" src="../img/E-WEB-Goal-06.png" alt="four betters">
+
+                    </div>
+                </div>
+                <div class="half box-text order-bottom">
+                    <div class="text popUp right-block">
+                        <p><b>Background:</b><br />Guatemala’s Corredor Seco (Dry Corridor) is one of the driest areas on the planet. Here, 1.2 million people, whose staple diet consists of corn and beans, make do with two-thirds less water than fellow Guatemalans. Until 2016, the municipality of Chiquimula had no local water supply: every five years, an average of three harvests failed. </p>
+                        <p><b>FAO’s actions:</b><br />Using a grant from the Swedish Government, FAO teamed up with Guatemala’s Ministry of Agriculture, Livestock and Food to set up a rainwater-harvesting system. This involves harvesting what little rainfall there is during the wet season and keeping it from evaporating – in this case, with an ingenious added benefit: snails and tilapia are farmed inside the reservoirs. </p>
+                        <p><b>Results: </b><br />Within a year, villagers in the Dry Corridor were eating and selling fish and snails. The yield of staple crops had gone up – and more vegetables were being grown than ever before. </p>
+                        <p><b>Impact:</b><br />Such projects open up family farming to fresh approaches and new, low-cost technologies. Local food security and nutrition indicators improve dramatically. By investing in people’s livelihoods, FAO brings closer the Goal of Zero Hunger, while making the use of water in agriculture vastly more efficient. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="full">
+                    <div class="copy-img">
+                        <img class="info" src="../img/info.svg" alt="info">
+                        <div class="closed"><img src="../img/close.svg" alt="close"></div>
+                    </div>
+                    <div class="info-copy">
+                        <div>
+                            Harvesting tilapia for FAO-supported school feeding, Minas Abajo, Guatemala <br />
+                            ©NOOR for FAO/Pep Bonet
+                        </div>
+                    </div>
+                    <img class="full-img" data-src="../img/ch3_3.jpg" />
+                </div>
+            </div>
+            <div class="row is-full maxWidth bgGrey reverse">
+                <div class="half box-text">
+                    <div class="text popUp left">
+                        <p><b>Background:</b><br />Illegal, unreported and unregulated (IUU) fishing can destroy the livelihoods of fishing communities; harm food security and nutrition; wreck biodiversity; and distort local and international trade. It often involves unsafe and indecent working conditions, and sometimes serious crime. With FAO’s support, countries are coming together to combat IUU fishing – and making noteworthy progress. </p>
+                        <p><b>FAO’s actions:</b><br />FAO’s <a href="https://www.fao.org/port-state-measures/en/" class="link" title="Agreement on Port State Measures" target="_blank">Agreement on Port State Measures</a> (PSMA) is designed to prevent, deter and eliminate the phenomenon by preventing IUU fishing vessels from using ports and landing their catches. At stake is the long-term conservation and sustainable use of living marine resources and ecosystems. Collaborating closely with FAO, Guinea – one of a growing list of signatories to the PSMA – has put great effort into implementing the agreement effectively.</p>
+                        <p><b>Results: </b><br />In the two years since signing up, Guinea has become one of the front runners in the fight against IUU fishing, and has had European Union trade sanctions against it lifted.</p>
+                        <p><b>Impact:</b><br />Progress towards the elimination of IUU fishing, country by country, helps safeguard biodiversity; protects the livelihoods of fishing communities; promotes fair local and international trade; and boosts food security. The fact that a least developed country (LDC) has achieved such progress demonstrates the PSMA’s transformative potential. </p>
+                    </div>
+                </div>
+                <div class="half bg-half-indicator blue">
+                    <div class="text right-block">
+                        <h2>Guinea: <br />implementing international agreements to restore fish trade</h2>
+                        <h3>TARGET 14.6 <span>Indicator 14.6.1</span></h3>
+                        <p>Degree of implementation of international instruments aiming to combat illegal, unreported and unregulated fishing</p>
+                        <img class="icon" src="../img/E-WEB-Goal-14.png" alt="four betters">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="full">
+                    <div class="copy-img">
+                        <img class="info" src="../img/info.svg" alt="info">
+                        <div class="closed"><img src="../img/close.svg" alt="close"></div>
+                    </div>
+                    <div class="info-copy">
+                        <div>
+                            Mending a fishing net as Guinea clamps down on IUU fishing <br />
+                            © FAO/Desirey Minkoh
+                        </div>
+                    </div>
+                    <img class="full-img" data-src="../img/ch3_4.jpg" />
+                </div>
+            </div>
+            <div class="row is-full maxWidth bgGrey reverse">
+                <div class="half bg-half-indicator blue">
+                    <div class="text">
+                        <h2>Dominica: <br />building more resilient livelihoods in islands vulnerable to climate change</h2>
+                        <h3>TARGET 14.7 <span>Indicator 14.7.1</span></h3>
+                        <p>Sustainable fisheries as a proportion of GDP in Small Island Developing States, least developed countries and all countries</p>
+                        <img class="icon" src="../img/E-WEB-Goal-14.png" alt="four betters">
+
+                    </div>
+                </div>
+                <div class="half box-text order-bottom">
+                    <div class="text popUp right-block">
+                        <p><b>Background:</b><br />Rising sea levels, and multiplying violent storms and hurricanes, gravely erode lives and livelihoods in Small Island Developing States (SIDS) such as Dominica. The nation’s aquaculture sector had already shrunk due to shifting government priorities, raising the import bill for fish and fish products.  </p>
+                        <p><b>FAO’s actions:</b><br />Under the <a href="https://www.fao.org/in-action/climate-change-adaptation-eastern-caribbean-fisheries/fr/" class="link" title="Climate Change Adaptation in the Eastern Caribbean Fisheries Sector" target="_blank">Climate Change Adaptation of the Eastern Caribbean Fisheries Sector</a> (CC4FISH) project, FAO has joined forces with Dominica’s Government to rejuvenate prawn production as a driver of sustainable fisheries development.</p>
+                        <p><b>Results: </b><br />Since the first local hatch in August 2020, larvae have been distributed to farmers looking to grow high-value prawns to meet domestic demand. Encouraged by the early results, fisheries officers and project team members are adding more farms to their distribution list.</p>
+                        <p><b>Impact:</b><br />The CC4FISH project spans seven countries in the eastern Caribbean: Antigua and Barbuda, Dominica, Grenada, Saint Kitts and Nevis, Saint Lucia, Saint Vincent and the Grenadines, and Trinidad and Tobago. By building up the aquaculture industry and making it climate resilient, FAO is helping island nations increase household income as fisheries move up the value chain. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="full">
+                    <div class="copy-img">
+                        <img class="info" src="../img/info.svg" alt="info">
+                        <div class="closed"><img src="../img/close.svg" alt="close"></div>
+                    </div>
+                    <div class="info-copy">
+                        <div>
+                            FAO's CC4FISH project promotes freshwater-prawn farming in the Caribbean <br />
+                            ©FAO/Dwayne Benjamin
+                        </div>
+                    </div>
+                    <img class="full-img" data-src="../img/ch3_5.jpg" />
+                </div>
+            </div>
+            <div class="row is-full maxWidth bgGrey reverse ">
+                <div class="half box-text ">
+                    <div class="text popUp left">
+                        <p><b>Background:</b><br />Forests are home to most of the Earth’s biodiversity. They supply us with water and food, and sustain livelihoods. But they are at risk: halting deforestation and managing forest resources sustainably is a burning challenge of our time. For this to succeed, information about the state of forests is vital. </p>
+                        <p><b>FAO’s actions:</b><br />FAO provides technical assistance and innovative tools to gather the type of data needed to manage and protect forests. A total of 45 countries – Papua New Guinea among them – are being supported by the Organization to develop robust <a href="https://www.fao.org/redd/areas-of-work/national-forest-monitoring-system/en/" class="link" title="National Forest Monitoring Systems" target="_blank">National Forest Monitoring Systems</a> (NFMS). </p>
+                        <p><b>Results: </b><br />Within a year, Papua New Guinea has developed a forest mitigation strategy, and cut back emissions by the equivalent of a thousandth of total emissions blamed on agriculture worldwide. </p>
+                        <p><b>Impact:</b><br />FAO is a prime disseminator of science-based forest management strategies among vulnerable members of the international community. The Organization’s interventions are catalytic and transformative, especially in small, highly exposed countries such as the SIDS. </p>
+                    </div>
+                </div>
+                <div class="half bg-half-indicator green">
+                    <div class="text right-block">
+                        <h2>Papua New Guinea: <br />forest management strategies for lower emissions</h2>
+                        <h3>TARGET 15.2 <span>Indicator 15.2.1</span></h3>
+                        <p>Progress towards sustainable forest management</p>
+                        <img class="icon" src="../img/E-WEB-Goal-15.png" alt="four betters">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="full">
+                    <div class="copy-img">
+                        <img class="info" src="../img/info.svg" alt="info">
+                        <div class="closed"><img src="../img/close.svg" alt="close"></div>
+                    </div>
+                    <div class="info-copy">
+                        <div>
+                            Identifying birds at a national forest initiative camp near Kupiano, Papua New Guinea<br />
+                            © UN-REDD/FAO/Cory Wright
+                        </div>
+                    </div>
+                    <img class="full-img" data-src="../img/ch3_6.jpg" />
+                </div>
+            </div>
+            <%= require('html-loader!./back-top.html') %>
+            <div class="navigation">
+                <% if(prevLink && prevLink.url) { %>
+                <a href="<%= prevLink.url %>.html" class="prev" title="<%= prevLink.title %>">prev</a>
+                <% } else {%>
+                <a href="../<%= htmlWebpackPlugin.options.jobNumber %>.html" class="prev" title="homepage">prev</a>
+                <% }%>
+                <% if(nextLink && nextLink.url) { %>
+                <a href="<%= nextLink.url %>.html" class="next" title="<%= nextLink.title %>">next</a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <%= require('html-loader!./footer.html') %>
+</body>
+</html>

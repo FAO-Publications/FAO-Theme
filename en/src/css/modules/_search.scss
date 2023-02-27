@@ -1,0 +1,32 @@
+.search-form {
+
+    .pagination {
+        li {
+            a {
+                color: $white !important;
+                border: none;
+                padding: 0 2px;
+                background-color: transparent !important;
+
+                span {
+                    font-size: 20px;
+                }
+            }
+
+            &.disabled {
+                display: none;
+            }
+        }
+    }
+
+    .dropdown-menu {
+        top: 98%;
+        margin-left: -1px;
+        width: 102% !important;
+    }
+
+    .button-search {
+        visibility: hidden;
+        position: absolute;
+    }
+}
