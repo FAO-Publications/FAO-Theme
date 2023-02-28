@@ -419,3 +419,40 @@ You should include the Google Analytics tracking code before closing the `<head>
 ## Creating a Production Build
 
 - `npm run build` creates a build directory with a bundle for every language of the publication.
+
+
+## Research
+
+In all html pages, except for index.html, the class "search-main" should be added to the div immediately following the opening <main> tag. 
+This class allows the search function to find the searched text within the text of the chapters.
+
+## Paragraph Links
+
+To allow for proper navigation of the site, each paragraph should be enclosed in a div with the same 'id' set in the publications file under the subMenuLink heading.
+For example, if the first chapter has a paragraph in the publications file with the following entry: subMenuLink: "#item-1-1".
+Then in the HTML file for the first chapter, the paragraph should be enclosed in the following div:
+
+<div id="item-1-1" class="paragraph-section">
+    ...
+</div>
+
+## Changing theme colors and fonts
+
+To change the theme colors, simply go to the variables.scss file and change the preferred color. For example, to change the primary color, locate the corresponding variable, which is:
+
+$primary: #00829a;
+
+To change the fonts, it is necessary to import the fonts in the main.scss file:
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+Then, modify and call it in the mixins.scss file:
+
+@mixin primaryFont($font-weight, $line-height) {
+font-weight: $font-weight;
+line-height: $line-height;
+font-family: 'Merriweather', serif;
+}
+
+
+

@@ -32,7 +32,7 @@ function downloadPage(page, url, title, menu) {
         url: url,
         success: function (data) {
 
-            var body = /<body.*>([\s\S]+)<\/body>/.exec(data);
+            var body = /<main.*>([\s\S]+)<\/main>/.exec(data);
 
             var search = {};
             search["index"] = "";

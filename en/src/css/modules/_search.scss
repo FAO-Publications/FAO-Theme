@@ -13,8 +13,12 @@
                 }
             }
 
-            &.disabled {
-                display: none;
+            &.page-item {
+                display: block !important;
+
+                &.disabled {
+                    display: none;
+                }
             }
         }
     }
