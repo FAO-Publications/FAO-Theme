@@ -153,13 +153,15 @@ $(window).on('scroll', function () {
     }
 });
 
-// seleziona tutti i link con la classe "close-navbar"
+// Select all the links with the class "close-navbar".
+
 const closeNavbarLinks = document.querySelectorAll('.close-navbar');
 
-// aggiungi un gestore di eventi di click a ciascun link
+// Add a click event handler to each link.
+
 closeNavbarLinks.forEach(link => {
     link.addEventListener('click', () => {
-        // chiudi la navbar se è aperta
+        // Close the navbar if it's open.
         const navbarCollapse = document.getElementById('navbarCollapse');
         const menuIcon = document.querySelector('.menu-icon');
         if (navbarCollapse.classList.contains('show')) {
@@ -168,5 +170,19 @@ closeNavbarLinks.forEach(link => {
         }
     });
 });
+
+
+$(document).ready(function () {
+    // Get the current URL.
+    var url = window.location.href;
+
+    // Check if the URL ends with "?search".
+    if (url.indexOf('?search') !== -1) {
+        // Add the class "show" to the div with id="searchMobile".
+        $('#searchMobile').addClass('show');
+    }
+});
+
+
 
 

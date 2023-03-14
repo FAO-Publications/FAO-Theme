@@ -43,7 +43,7 @@ body {
 
         span {
             @include secondaryFont($font-weight-medium, $line-height-xs);
-            color: $dark-light;
+            color: $grey;
             display: block;
         }
     }
