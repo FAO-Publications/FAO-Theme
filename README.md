@@ -1,4 +1,4 @@
-# Generic Digital Template fot Technical Publications
+# Generic Digital Template for Technical Publications
 
 ## Styles and layout specs:
 [digital-guideline.pdf](https://github.com/matteo1986/FAO-Theme/files/10977856/digital-guideline.pdf)
