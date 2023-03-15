@@ -1,7 +1,10 @@
-# FAO: SDG 2022 Corporate Brochure
+# Generic Digital Template fot Technical Publications
+
+## Styles and layout specs:
+- [cc3859es_removed.pdf](https://github.com/matteo1986/FAO-Theme/files/10977751/cc3859es_removed.pdf)
 
 
-## Getting Starded
+## Getting Started
 - run `npm install` to install javascript dependencies.
 
 ## Code Structure
