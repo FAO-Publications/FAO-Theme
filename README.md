@@ -1,8 +1,7 @@
 # Generic Digital Template fot Technical Publications
 
 ## Styles and layout specs:
-- [cc3859es_removed.pdf](https://github.com/matteo1986/FAO-Theme/files/10977751/cc3859es_removed.pdf)
-
+[digital-guideline.pdf](https://github.com/matteo1986/FAO-Theme/files/10977856/digital-guideline.pdf)
 
 ## Getting Started
 - run `npm install` to install javascript dependencies.
