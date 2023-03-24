@@ -1,0 +1,28 @@
+// fonts
+@mixin primaryFont($font-weight, $line-height) {
+    font-weight: $font-weight;
+    line-height: $line-height;
+    font-family: 'Merriweather', serif;
+}
+
+
+@mixin secondaryFont($font-weight, $line-height) {
+  font-weight: $font-weight;
+  line-height: $line-height;
+  font-family: 'Barlow', sans-serif;
+}
+
+@mixin alternativeFont($font-weight, $line-height) {
+  font-weight: $font-weight;
+  line-height: $line-height;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+// hero height
+@mixin hero-height{
+  height: calc(#{$viewportHeight} - #{$headerHeight} - #{$navBottomHeight});
+}
+
+@mixin hero-height-mobile{
+  height: calc(#{$viewportHeight} - #{$headerHeight} );
+}

@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="<%= htmlWebpackPlugin.options.lang %>">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <% for(var x=0; x < totLang.length; x++) {%>
+    <% if(totLang[x].lang === htmlWebpackPlugin.options.lang) { %>
+    <link rel="canonical" href="https://www.fao.org/3/<%= totLang[x].code %>/online/<%= totLang[x].code %>.html">
+    <% } else { %>
+    <link rel="alternate" hreflang="<%= totLang[x].lang %>" href="https://www.fao.org/3/<%= totLang[x].code %>/online/<%= totLang[x].code %>.html">
+    <% } %>
+    <% } %>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <link rel="shortcut icon" href="../images/favicon.ico">
+</head>
+<body>
+
+    <header class="navbar  navbar-expand-lg navbar-dark fixed-top bg-primary">
+        <div class="container gap-4">
+
+            <a class="navbar-brand" href="https://www.fao.org" target="_blank"
+               title="FAO - Food and Agriculture Organization">
+                <img src="../images/logo-white.svg" alt="FAO">
+            </a>
+
+            <button class="navbar-toggler third-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <div class="menu-icon"><span class="w-50"></span><span></span><span class="w-75"></span></div>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="my-4 d-lg-none d-xl-none">
+                    <ul class="list-unstyled px-2">
+                        <li class="border-bottom">
+                            <a class="text-white text-decoration-none text-uppercase py-2 fs-6" href="../<%= htmlWebpackPlugin.options.jobNumber %>.html" title="Homepage">
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <%for (var i = 0; i < menu.length; i++) {%>
+                        <li class="border-bottom">
+                            <%if (menu[i].subMenu != undefined && menu[i].subMenu != null && menu[i].subMenu.length > 0) {%>
+                            <a class="text-white text-decoration-none text-uppercase py-2 fs-6" type="button" data-bs-toggle="collapse"
+                               data-bs-target="#panelsStayOpen-collapse<%= i  %>" aria-expanded="true"
+                               aria-controls="panelsStayOpen-collapse<%= i  %>">
+                                <%= menu[i].chapterNumber %> <%= menu[i].title %>
+                            </a>
+                            <div id="panelsStayOpen-collapse<%= i  %>" class="sub-menu px-3 py-1 collapse"
+                                 aria-labelledby="panelsStayOpen-heading">
+                                <ul class="list-unstyled">
+                                    <%for (var y = 0; y < menu[i].subMenu.length; y++) {%>
+                                    <li class="py-1"><a target="_self" class="text-white text-decoration-none text-uppercase fs-6 close-navbar" href="../<%= acronym %>-<%= year %>/<%= menu[i].url%>.html<%=menu[i].subMenu[y].subMenuLink%>" title="<%=menu[i].subMenu[y].subMenuTitle%>"><%=menu[i].subMenu[y].subMenuTitle%></a></li>
+                                    <%}%>
+                                </ul>
+                            </div>
+                            <%} else {%>
+                            <a href="../<%= acronym %>-<%= year %>/<%= menu[i].url%>.html" title="Homepage" class="text-white text-decoration-none text-uppercase fs-6 py-2">
+                                <%= menu[i].chapterNumber %> <%= menu[i].title %>
+                            </a>
+                            <%}%>
+                        </li>
+                        <%}%>
+                        <li class="py-2 mt-5 pt-5  d-flex justify-content-between">
+
+                            <a href="https://www.fao.org/documents/card/en/c/jobnumberen" target="_blank" class="btn border text-white rounded-0  download-pdf">DOWNLOAD PDF</a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="search-form d-flex align-items-center gap-2 search-form-mobile" role="search">
+                <a class="nav-link text-uppercase d-md-none d-lg-none d-xl-none" aria-current="page" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false" href="#" title="#">
+                    <span class="material-symbols-outlined text-white">
+                        search
+                    </span>
+                </a>
+                <div id="searchMobile" class=" w-100 mt-0 rounded-0 bg-primary " aria-labelledby="navbarDropdown">
+                    <div class="conatiner d-flex align-items-center gap-2 p-2" role="search">
+                        <form id="searchMain" class="search-form d-flex align-items-center gap-2" role="search">
+                            <label class="text-white">SEARCH</label>
+                            <input id="searchTextMain" class="form-control me-2 bg-transparent border-0 border-bottom rounded-0 p-0 text-white" type="search"
+                                   aria-label="Search">
+                            <button class="btn btn-outline-success button-search" type="submit" data-bs-toggle="modal" data-bs-target="#extModal"></button>
+                        </form>
+
+                        <span id="searchResult" class="me-2 bg-transparent border-0 rounded-0 p-0 text-white">0/0</span>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination mb-1">
+                                <li id="prev" class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Previous" onclick="javascript:prev();">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li id="next" class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Next" onclick="javascript:next();">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a class="btn btn-transparent dropdown-toggle text-white border-0" href="#" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    ENGLISH
+                </a>
+                <ul class="dropdown-menu ">
+                    <li><a class="dropdown-item" href="#">العربية</a></li>
+                    <li><a class="dropdown-item" href="#">中文 </a></li>
+                    <li><a class="dropdown-item" href="#">Español </a></li>
+                    <li><a class="dropdown-item" href="#">Français  </a></li>
+                    <li><a class="dropdown-item" href="#">Русский </a></li>
+                </ul>
+            </div>
+
+            <a href="https://www.fao.org/documents/card/en/c/jobnumberen" target="_blank" class="btn border text-white rounded-0 d-none d-lg-flex download-pdf">DOWNLOAD PDF</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="search-main container pt-5 mt-5">
+            <div class="row">
+
+                <div class="col-md-12 ms-auto mb-4">
+                    <div class="row">
+                        <div class="col-md-9 ms-auto">
+                            <h3 class="title-chapter-alternative display-4 text-primary">ANNEXES</h3>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Sidebar menu -->
+
+                <div id="sidebar-container" class="col-md-3 position-sticky d-none d-lg-block">
+                    <div class="title-sidebar w-75 text-dark-light border px-4 py-3 mb-4">
+                        <a href="../<%= htmlWebpackPlugin.options.jobNumber %>.html" title="Homepage" class="link-unstyled"><h2 class="fs-2 w-50"><%= pubTitle %></h2></a>
+                    </div>
+                    <div id="top-menu" class="nav nav-pills flex-column">
+                        <h2 class="fs-5 text-primary w-75 h1-chapter">
+                            <%= htmlWebpackPlugin.options.title %>
+                        </h2>
+                        <div class="sidebar-line my-2"></div>
+                        <a class="nav-link ps-0 text-dark" href="#item-1-1">Annex 1. Measuring household consumption</a>
+                        <a class="nav-link ps-0 text-dark" href="#item-1-2">Annex 2. Measuring household income</a>
+                        <a class="nav-link ps-0 text-dark" href="#item-1-3">Annex 3. Setting an absolute poverty line with the food-energy intake method</a>
+                        <a class="nav-link ps-0 text-dark" href="#item-1-4">Annex 4. Setting a relative poverty line</a>
+                        <a class="nav-link ps-0 text-dark" href="#item-1-5">Annex 5. Setting a subjective poverty line</a>
+                    </div>
+                </div>
+
+                <div class="col-md-9 ms-auto mb-5 paragraph-section" id="item-1-1" style="margin-top:-71px;">
+                    <h3 class="title-chapter fs-3 text-primary text-uppercase"><span>Annex 1.</span>Measuring household consumption</h3>
+                    <p>
+                        Deaton and Grosh (2000) and Deaton and Zaidi (2002) are the two main references for those
+                        interested in the details of how household consumption should be collected in household surveys,
+                        and how a consumption measure should be constructed with the information provided by
+                        household surveys. Based on these works, this section summarizes the most important aspects
+                        related to the construction of a measure of consumption with household survey microdata. Those
+                        aspects are listed below:
+                        <ul class="square">
+                            <li>
+
+                                The consumption measure used as welfare indicator for poverty measurement purposes should
+                                include all the goods and services contributing to the households’ well-being.
+
+                            </li>
+                            <li>
+
+                                In the measurement of welfare, consumption is a better proxy variable than expenditure.
+                                In other words, household expenditure is just one of the components of household total
+                                consumption.
+
+                            </li>
+                            <li>
+
+                                A measure of household total consumption should add up:
+
+                                <ol>
+                                    <li>
+                                        All reported expenditures on goods and services (goods and services obtained in
+                                        the market).
+                                    </li>
+                                    <li>The value of consumption out of home/own production of good and services.</li>
+                                    <li>The value of consumption in kind received as transfers/gifts from other households.</li>
+                                    <li>The value of consumption in kind received from employers.</li>
+                                    <li>The flow of services provided by durable goods and owner-occupied housing.</li>
+
+                                </ol>
+                            </li>
+                            <li>
+                                When constructing it, the consumption measure may be decomposed in the following
+                                categories:
+                                <ol>
+                                    <li>food items.</li>
+                                    <li>non-food items.</li>
+                                    <li>durable goods.</li>
+                                    <li>housing.</li>
+                                </ol>
+                            </li>
+                            <li>
+                                The food aggregate should include food consumption from all sources: food purchased in the
+                                market, food produced at home, food obtained from own-production as self-employed, food
+                                received as a transfer in-kind from the government or as a transfer/gift from other households,
+                                food received as payment from employers, food obtained from food banks or from school meals
+                                programs, and food consumed outside the house (e.g. in restaurants or street food markets).
+                            </li>
+                            <li>
+                                The non-food aggregate should exclude those expenditures that are not directly related with
+                                the satisfaction of household needs. Some examples are taxes, large expenditures that are
+                                not part of regular household consumption, transfers/gifts to other households, occasional
+                                expenditures (e.g. weddings and funerals), and payments of interest on consumer credits. The
+                                inclusion/exclusion of health expenditures should be carefully analysed, and it will probably
+                                depend on the objectives of the analysis.
+                            </li>
+                            <li>
+                                For most non-durable goods included in the food and in the non-food aggregate, consumption
+                                and expenditure are very similar over fairly short periods of time.
+                            </li>
+                            <li>
+                                In the case of major durable goods, or goods that can be stored for a long period of time,
+                                consumption and expenditure differ markedly in the short run. For durable goods, it is
+                                necessary to impute the consumption flow derived from their utilization. In general, the
+                                imputation strategy for durable goods is based on the following pieces of information: the
+                                stock of durable goods, and the age, the original value/price and the current value/price
+                                of each durable good. With that information, it is possible to estimate a depreciation rate
+                                for each durable good, and the value of that depreciation rate should be added to the
+                                consumption measure.
+                            </li>
+                            <li>
+                                In the case of housing, the rental value of the owner-occupied dwelling can be obtained from
+                                the rental value of a similar dwelling in the market. If such a market does not exist or it is too
+                                limited, information on characteristics of the dwelling can be used to impute its rental value.
+                            </li>
+                        </ul>
+                    </p>
+
+                </div>
+
+                <div id="item-1-2" class="paragraph-section">
+                    <div class="col-md-9 ms-auto">
+                        <h3 class="title-chapter fs-3 text-primary text-uppercase">
+                            <span>Annex 2.</span>MEASURING
+                            HOUSEHOLD INCOME
+                        </h3>
+                        <p>
+                            The “Handbook on household income statistics” of the Canberra Group (United Nations Economic
+                            Commission for Europe, 2011) constitutes the main reference for those interested in the details
+                            of how household income should be collected in household surveys, and how an income measure
+                            should be constructed with the information provided by household surveys. That report contains
+                            the definition of household income more broadly accepted by experts:
+                        </p>
+                        <div class="quote mt-5 pt-5">
+                            <p class="text-primary">
+                                Household income consists of all receipts whether monetary or in kind (goods and services) that are
+                                received by the household or by individual members of the household at annual or more frequent
+                                intervals; but excludes windfall gains and other such irregular and typically one-time receipts.
+                            </p>
+                        </div>
+                        <p class="pt-4">
+                            <strong>Table A1</strong> presents all the components that should be included in a comprehensive definition
+                            of household income. The structure of household income provided by Table 3 should be
+                            considered as the ideal case scenario. Most developing countries using household income as
+                            the welfare indicator for poverty measurement rely on a restricted version of this definition of
+                            household income. In general, developing countries include all the monetary sources of income
+                            (such as wages, self-employment income, received cash transfers, pensions, income obtained
+                            from the property of assets, child support payments and other forms of monetary income)
+                            plus some non-monetary income concepts (such as imputed rental value for owner-occupied
+                            dwellings). However, developing countries do not include taxes and other non-cash benefits
+                            received by households. In developing countries, where most poor do not pay direct taxes, the exclusion of taxes does not affect poverty estimations to a great extent. FAO has made specific
+                            recommendations to the computation of aggregate incomes for rural households. The full set
+                            of recommendations, as well as challenges encountered, can be found in Covarrubias, De la O
+                            Campos and Zezza (2009).
+                        </p>
+                        <p>
+                            Is ut elenem audis sandite rem eos as sum in necuptat optatur moloriorror audit maxim nos sum
+                            dolores derum fugit, soluptas et vendero eatis dolupta tectat rerchitibus ut asit, a nis excest
+                            offictem facepratum rest rempore pedias utet omnisin plaut et latem recum dit dolorem oloris
+                            dolo cum, sinvelit laut que a vid ut modis es parum faccust, siminimus ut distrum, aut ad quam
+                            voluptate perum hic te is dolupti onectatio doloreprat eatiandi conem rest eossitis dolorior aut
+                            eum quundis por ad ma es eveniscimus enihillam, quas aut eosam et dit, ut pro consequate am
+                            nus magni ipsam, quiam, nemod quiantibusci bearum volum sum faccumque preperatur aliquae.
+                            Picaborro estiore mporrovid ea in corenimposa desenih iciatusandae mod quos apitatem acius
+                            andam ea santis aut eossi aut aut labo. Ximusda musdam, sed magnit re landae volores se ipicabo.
+                            Et que niminum consequo vendae dus porererum remporat laniene eium et eatiasp ellame veliam
+                            lab idunti dit aut voloren ditatia tquatur reritae ssitium fugiaestecea dolenecus.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="item-1-3"></div>
+                <div id="item-1-4"></div>
+                <div id="item-1-5"></div>
+                <%= require('html-loader!./back-to-top.html') %>
+            </div>
+        </div>
+    </main>
+    <%= require('html-loader!./footer.html') %>
+    <div id="navigation" class="navigation sticky-bottom bg-navigationBg pt-1 pb-3 d-none d-lg-flex">
+        <div class="container">
+            <ul class="nav justify-content-between border-bottom">
+                <% var chapter = 0; %>
+                <%for (var i = 0; i < menu.length; i++) {%>
+                <li>
+                    <%if (menu[i].subMenu != undefined && menu[i].subMenu != null && menu[i].subMenu.length > 0) {%>
+
+                    <%if (menu[i].isChapter) { chapter += 1; %>
+                    <a class="nav-link" aria-current="page" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false" href="../<%= acronym %>-<%= year %>/<%= menu[i].url%>.html">CHAPTER <%= chapter  %></a>
+
+                    <div class="dropdown-menu mt-0 rounded-0 p-0" aria-labelledby="navbarDropdown">
+                        <div class="card border-0 rounded-0 px-3 py-4 bg-transparent" style="max-width: 430px;">
+                            <div class="row g-0">
+                                <div class="col-md-4 pt-2">
+                                    <div class="card-img rounded-0 d-flex flex-row-reverse align-items-end p-2"
+                                         style="height: 130px;width: 130px; background: url('../images/<%= menu[i].img%>.jpg') no-repeat center;">
+                                        <a class="text-dark text-decoration-none" href="../<%= acronym %>-<%= year %>/<%= menu[i].url%>.html"><span class="text-white display-1"><%= chapter  %></span></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 px-3">
+                                    <a class="text-dark text-decoration-none" href="../<%= acronym %>-<%= year %>/<%= menu[i].url%>.html">
+                                        <h5 class="card-title text-uppercase primary-color text-secondary text-uppercase p-1">
+                                            <%= menu[i].title %>
+                                        </h5>
+                                    </a>
+                                    <ul class="list-unstyled">
+                                        <%for (var y = 0; y < menu[i].subMenu.length; y++) {%>
+                                        <li class="card-text mb-1">
+                                            <a target="_self" class="text-dark text-decoration-none" href="../<%= acronym %>-<%= year %>/<%= menu[i].url%>.html<%=menu[i].subMenu[y].subMenuLink%>">
+                                                <%=menu[i].subMenu[y].subMenuTitle%>
+                                            </a>
+                                        </li>
+                                        <%}%>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <%} else {%>
+                    <a class="nav-link text-uppercase" aria-current="page" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false" href="../<%= acronym %>-<%= year %>/<%= menu[i].url%>.html" title="<%= menu[i].title %>"> <%= menu[i].title %></a>
+                    <div class="dropdown-menu w-100 mt-0 rounded-0" aria-labelledby="navbarDropdown">
+                        <ul class="list-unstyled container d-flex px-4">
+                            <%for (var y = 0; y < menu[i].subMenu.length; y++) {%>
+                            <li>
+                                <a target="_self" class="text-dark text-decoration-none px-3 text-uppercase" href="../<%= acronym %>-<%= year %>/<%= menu[i].url%>.html<%=menu[i].subMenu[y].subMenuLink%>">
+                                    <%=menu[i].subMenu[y].subMenuTitle%>
+                                </a>
+                            </li>
+                            <%}%>
+                        </ul>
+                    </div>
+                    <%}%>
+
+                    <%} else {%>
+                    <%if (menu[i].isChapter) { chapter += 1; %>
+                    <a class="nav-link text-uppercase" href="../<%= acronym %>-<%= year %>/<%= menu[i].url%>.html"> CHAPTER <%= chapter  %></a>
+                    <%} else {%>
+                    <a class="nav-link text-uppercase" href="../<%= acronym %>-<%= year %>/<%= menu[i].url%>.html"> <%= menu[i].title %></a>
+                    <%}%>
+                    <%}%>
+                </li>
+                <%}%>
+            </ul>
+        </div>
+    </div>
+    <%= require('html-loader!./script.html') %>
+</body>
+</html>

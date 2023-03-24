@@ -1,0 +1,12 @@
+.back-top {
+	@include secondaryFont($font-weight-semibold,$line-height-sm);
+
+	a {
+		cursor: pointer;
+
+		.material-symbols-outlined {
+			padding-left: 2px;
+		}
+
+	}
+}

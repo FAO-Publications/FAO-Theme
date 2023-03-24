@@ -1,0 +1,5 @@
+footer{
+    @include secondaryFont($font-weight-semibold,$line-height-sm);
+    position: relative;
+    
+}
