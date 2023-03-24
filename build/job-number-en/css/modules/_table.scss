@@ -1,0 +1,3 @@
+.table{
+    @include secondaryFont($font-weight-normal, $line-height-base);
+}

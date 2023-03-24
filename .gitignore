@@ -21,7 +21,6 @@ yarn-error.log*
 
 
 node_modules
-build
 deploy
 
 # local env files

@@ -1,0 +1,68 @@
+body {
+    @include primaryFont($font-weight-normal, $line-height-lg);
+
+    header {
+        &.navbar {
+            @include secondaryFont($font-weight-medium, $line-height-base);
+            font-size: $font-size-sm;
+
+            .dropdown {
+                a {
+                    font-size: $font-size-sm;
+                }
+            }
+        }
+    }
+
+    .lead {
+        @include secondaryFont($font-weight-medium, $line-height-sm);
+        text-shadow: 4px 4px 5px rgb(0 0 0);
+    }
+
+    .paragraph {
+        @include secondaryFont($font-weight-normal, $line-height-medium-lg);
+        font-size: $font-size-1;
+    }
+
+    .box {
+        @include secondaryFont($font-weight-normal, $line-height-base);
+        font-size: $font-size-base;
+    }
+
+    h1.display-1, h1.display-3 {
+        @include alternativeFont($font-weight-semibold, $line-height-xs);
+        text-shadow: 4px 4px 5px rgb(0 0 0);
+    }
+
+    span.display-4 {
+        @include alternativeFont($font-weight-normal, $line-height-xs);
+    }
+
+    .title-chapter {
+        @include secondaryFont($font-weight-bold, $line-height-title-chapter);
+
+        span {
+            @include secondaryFont($font-weight-medium, $line-height-xs);
+            color: $grey;
+            display: block;
+        }
+    }
+
+    .title-chapter-alternative {
+        @include alternativeFont($font-weight-semibold, $line-height-sm);
+    }
+
+    .sources {
+        @include secondaryFont($font-weight-light, $line-height-sm);
+        font-size: $font-size-sm;
+
+        span {
+            font-weight: $font-weight-medium;
+        }
+    }
+
+    sup a {
+        font-weight: $font-weight-bold;
+        font-size: 1rem;
+    }
+}
