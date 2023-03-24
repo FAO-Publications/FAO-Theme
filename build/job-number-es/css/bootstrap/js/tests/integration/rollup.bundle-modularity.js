@@ -1,0 +1,1 @@
+const commonjs=require("@rollup/plugin-commonjs"),configRollup=require("./rollup.bundle"),config={...configRollup,input:"js/tests/integration/bundle-modularity.js",output:{file:"js/coverage/bundle-modularity.js",format:"iife"}};config.plugins.unshift(commonjs()),module.exports=config;

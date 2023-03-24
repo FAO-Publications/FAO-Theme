@@ -1,0 +1,124 @@
+.navigation {
+    z-index: 30;
+
+    .nav {
+        li {
+            &:last-child {
+                .dropdown-menu {
+                    ul {
+                        justify-content: flex-end;
+                    }
+                }
+            }
+
+            &:focus-visible {
+                outline-style: none;
+                outline-color: transparent;
+                outline-width: 0px;
+            }
+
+            a {
+                &:focus-visible {
+                    outline-style: none;
+                    outline-color: transparent;
+                    outline-width: 0px;
+                }
+            }
+        }
+    }
+
+    .nav-link {
+        color: $lightGreyNav;
+        @include alternativeFont($font-weight-medium,$line-height-base);
+        font-size: $font-size-base;
+
+        &::before {
+            content: "";
+            width: 30px;
+            height: 6px;
+            background-color: transparent;
+            position: relative;
+            display: flex;
+            top: 36px;
+            margin: 0 auto;
+        }
+
+        &:hover, &:focus, &.active {
+            color: $white;
+        }
+
+        &.active {
+            &::before {
+                content: "";
+                width: 30px;
+                height: 6px;
+                background-color: #fff;
+                position: relative;
+                display: flex;
+                top: 36px;
+                margin: 0 auto;
+            }
+        }
+
+        &.dropdown-toggle {
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+    .dropdown-menu {
+        @include secondaryFont($font-weight-semibold,$line-height-base);
+        font-size: $font-size-sm;
+        background-color: $white-opacity;
+
+        .card-img {
+           
+            background-size: cover;
+
+            span {
+                @include alternativeFont($font-weight-medium,$line-height-xs);
+            }
+        }
+
+        a {
+            &:hover {
+                .card-title {
+                    color: $primary !important;
+                }
+            }
+        }
+
+        .card-title {
+            @include secondaryFont($font-weight-semibold,$line-height-regular-plus);
+
+            &:hover {
+            }
+        }
+
+        .card-text {
+            @include secondaryFont($font-weight-normal,$line-height-sm);
+
+            a {
+                &:hover {
+                    color: $orange !important;
+                }
+            }
+        }
+
+        .list-unstyled {
+            a {
+                &:hover {
+                    color: $orange !important;
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: map-get($grid-breakpoints, lg)) {
+    .navigation {
+        .dropdown-menu {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+    }
+}
