@@ -1,2 +1,0 @@
-/*! For license information please see application.js.LICENSE.txt */
-(()=>{"use strict";const e=document.querySelector(".bd-sidebar");if(e){const o=e.clientHeight,t=document.querySelector(".bd-links-nav .active"),c=t.offsetTop,l=t.clientHeight,s=c,i=s-o+l;(e.scrollTop>s||e.scrollTop<i)&&(e.scrollTop=s-o/2+l/2)}})();
